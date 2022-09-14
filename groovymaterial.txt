@@ -251,9 +251,257 @@ Nuget -MS .NET
  Micronaut  -Groovy
 
 SOAP UI - SCRIPTS Written in groovy.
+/////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 
+Groovy : Setup:
 
+Groovy can be installed in many ways
+...................................
+1. Download a source or binary distribution.
+
+2.Use a package manager-sdkMan or bundle for your operating system.
+
+3.Grab the latest plugin for your IDE and follow the installation instructions.
+
+4.Find the latest source code in the Git repo (or the GitHub mirror).
+
+5.If you're using Docker, Groovy is available on Docker Hub.
+////////////////////////////////////////////////////////////////////////////////////////////
+
+JDK 11
+Set path in env 
+
+JAVA_HOME
+  C:\Program Files\Java\jdk11
+PATH
+ E:\softwares\groovy-4.0.1\bin
+
+ide : 
+ https://www.jetbrains.com/idea/
+
+
+Tools provided by groovy:
+
+1.compiler 
+  groovyc
+ compile groovy into .class.
+2.groovy
+   To run groovy code. here we dont need to compile.
+  java Main  groovy Main
+3.groovy console
+   -Built in ide to write groovy code
+4.REPL  - Read Evaulate Print Loop : Interactive cmd line tool.-groovysh : groovy shell - Wrapper to low level services.
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+Program types:
+
+1.Script Program
+2.Class based Program
+
+Compile And Exection Model:
+groovyc  FileName.groovy ----FileName.class--load on jvm
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+Lets Coding:
+
+1.simple coding using groovy console.
+
+2.Using idea editor
+
+3.vs code editor.
+
+How to compile and run?
+E:\session\kyndryl\code-with-groovy> groovyc src/HelloWorld.groovy
+E:\session\kyndryl\code-with-groovy> groovy  src/HelloWorld.groovy
+
+.....................................................................................
+
+helloworld.groovy
+println "Hello Groovy World"
+
+
+
+The above code
+
+- dont have its own class like java
+- dont have main method like java
+- dont have semicollons like java
+
+Since groovy is code but how it is running?
+
+Groovy adds automatically the below code.
+
+
+What is happening after compilation?
+
+HelloWorld.groovy
+
+println "hello";
+
+After compilation Groovy compiler writes a code like below
+
+import org.codehaus.groovy.runtime.InvokerHelper;
+
+class HelloWorld extends Script {    
+                 
+    def run() {                                 
+  	println "hello";               
+    }
+    static void main(String[] args) {           
+        InvokerHelper.runScript(HelloWorld, args)     
+    }
+}
+
+1.The HelloWorld class extends the groovy.lang.Script class
+
+2.groovy.lang.Script requires a run method returning a value
+  the script body goes into the run method
+
+3.the main method is automatically generated
+ 
+4.and delegates the execution of the script on the run   method
+/////////////////////////////////////////////////////////////////////////////////////
+
+Groovy topics:
+.............
+
+Groovy Language:
+...............
+
+1.Language Fundamentals
+2.Groovy Object orientations
+3.Groovy Closures and Functional Programming
+4.Groovy Meta Programming
+5.Groovy DSL
+6.Groovy and Builders
+7.Groovy and Collections
+8.Groovy and IO
+    -File,
+    -JSON
+    -XML
+
+1.Language Fundamentals
+
+1.1.Type system
+1.2.literals
+1.3.variables
+1.4.operators
+1.5.control structures
+1.6.iterators/loops
+
+Types ,literals ,variables:
+.............................
+Groovy is dynamic , static typed programming lanugage.
+
+variables are other wise called as "identifiers"
+
+syntax:
+
+Strong typing
+ 
+type variable=value
+
+eg;
+ int a =10;
+
+There are two types of datatype
+
+1.primitive  -  int,float,char,boolean....
+2.complex/userdefined/ data type - Object types - Customer/Employee....
+
+
+/**
+ * Primitive Types in java
+ *  -integers
+ *      byte
+ *        -128 to 127
+ *        1 byte
+ *      short
+ *       -32,768 to 32767
+ *       2 bytes
+ *      int
+ *       -2Powof31 to 2powerof32
+ *       4 bytes
+ *       long
+ *       - -2power63 to 2powerof64
+ *       8 bytes
+ *
+ *  -float
+ *     float - 4bytes
+ *     double -8bytes
+ *  -char
+ *    char- 16 bit unicode char
+ *  -boolean
+ *     boolean
+ *     1 bit - 0 / 1
+
+
+StrongTyping.groovy
+//strong type
+//integer
+byte b = 100
+short s = 900
+int i = 90
+long lng = 98888
+println "Strong Prmitive Types"
+println "Byte " + b
+println "Short " + s
+println "Integer " + i
+println "Long " + lng
+
+//floating points
+
+float f = 100.78
+double d =987.78
+
+println "Float " + f
+println "Double " + d
+
+//characters
+char c ='a'
+char c1 = 98
+println "Character 1" + c
+println "Character 2 " + c1
+
+
+Strong typing and compile time errors:
+......................................
+
+int i =10
+i ="Hello"
+
+Caught: org.codehaus.groovy.runtime.typehandling.GroovyCastException: Cannot cast object 'Hello' with class 'java.lang.String' to class 'int'
+org.codehaus.groovy.runtime.typehandling.GroovyCastException: Cannot cast object 'Hello' with class 'java.lang.String' to class 'int'
+	at StrongTypingCompilationError.run(StrongTypingCompilationError.groovy:3)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+...................................................................................
+Weak Typing / Dynamic Typing:
+............................
+
+The type of variable is not known during compile time.
+
+syntax;
+
+def identifier(variable)=value(literal)
+
+def - keyword
+
+//Dynamic typing
+def myvar = 100
+println "MyVar with Number" + myvar
+
+//reinitalize the variable with different values
+myvar = true
+println "MyVar with Boolean" + myvar
+
+myvar = 89.89
+println "MyVar with floating " + myvar
 
 
 
