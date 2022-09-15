@@ -504,6 +504,572 @@ myvar = 89.89
 println "MyVar with floating " + myvar
 
 
+Checking type of variable:
+
+For strong Typing-Primitve
+
+
+//if if want to type of a variable
+
+int a = 10 //here type is int
+
+def b =100  //here type of b is ? -int,byte,short,long?
+//instance of operator to know the type of variable
+
+println(a instanceof  int)  //true or false
+
+output
+Groovyc: Cannot perform instanceof check against primitive type int
+ 
+Wrapper classes:
+  In java every primitive is mapped with Object /Reference Type - Wrapper class
+
+
+ Every prmitive type eq Reference type is there
+
+ byte   - Byte 
+  :The Byte class wraps a value of primitive type byte in an object.
+ short  -  Short
+ int    - Integer
+ long   -Long
+ float  -Float
+ double -Double 
+ boolean -Boolean
+ char    - Character 
+ NOPrimitive ------String
+
+
+//if if want to type of a variable
+
+int a = 10 //here type is int
+
+def b =100  //here type of b is ? -int,byte,short,long?
+//instance of operator to know the type of variable
+
+//println(a instanceof  int)  //true or false
+
+println(b instanceof  Integer)
+
+def lightspeed=8888889988
+
+println(lightspeed instanceof  Integer)
+println(lightspeed instanceof  Long)
+
+Code challange:
+...............
+In java, i want to store the below number, findout right data type.
+
+myvariable =2232333333333333333333333333333333333331212121212092347329473433483473984732948734983473984739473498473289472394238437498479487948749387492479479347943794479;
+
+//if if want to type of a variable
+
+int a = 10 //here type is int
+
+def b = 100  //here type of b is ? -int,byte,short,long?
+//instance of operator to know the type of variable
+
+//println(a instanceof  int)  //true or false
+
+println(b instanceof Integer)
+
+def lightspeed = 8888889988
+
+println(lightspeed instanceof Integer)
+println(lightspeed instanceof Long)
+
+def myvariable = 2232333333333333333333333333333333333331212121212092347329473433483473984732948734983473984739473498473289472394238437498479487948749387492479479347943794479;
+println(myvariable instanceof BigInteger)
+
+Code challange:
+...............
+In java, i want to store the below number, findout right data type.
+
+myvariable =2232333333333333333333333333333333333331212121212092347329473433483473984732948734983473984739473498473289472394238437498479487948749387492479479347943794479;
+
+
+//Identify the type of variable.
+//instance of operator tells that the variable belongs to what type ?
+//either byte /short/long/int.
+//variableName instanceof Type
+
+def myvar = 1;
+println "My var instance of   : " + myvar instanceof Byte;
+println "My var instance of   : " + myvar instanceof Short;
+println "My var instance of   : " + myvar instanceof Integer;
+println "My var instance of   : " + myvar instanceof Long;
+println "My var instance of   : " + myvar instanceof Float;
+println "My var instance of   : " + myvar instanceof Double;
+println "My var instance of   : " + myvar instanceof BigInteger;
+println "With out string concation"
+println myvar instanceof Integer
+println myvar instanceof Short
+println myvar instanceof Byte
+println myvar instanceof Long
+
+println "initalizing with long numbers"
+myvar = 999999999999999;
+println myvar instanceof Integer
+println myvar instanceof Short
+println myvar instanceof Byte
+println myvar instanceof Long
+println "initalizing with big  numbers"
+myvar = 9999999999999999777777777777777777777777777777777777777777777777777777777777777777;
+println myvar instanceof Integer
+println myvar instanceof Short
+println myvar instanceof Byte
+println myvar instanceof Long
+println myvar instanceof BigInteger
+/////////////////////////////////////////////////////////////////////////////////
+println "String identification"
+myvar = "hello world"
+println myvar instanceof String;
+println "Character identification"
+myvar = 'A';
+println myvar instanceof Character;
+println myvar instanceof String;
+////////////////////////////////////////////////////////////////////////////////////////////
+println "Boolean identification"
+myvar = true;
+println myvar instanceof Boolean;
+/////////////////////////////////////////////////////////////////////////////////////////////////
+println "Decimal identification"
+myvar = 10.89000;
+println myvar instanceof Float; //false
+println myvar instanceof Double; //false
+println myvar instanceof BigDecimal; //true
+/////////////////////////////////////////////////////////////////////////////////////					Type conversion
+..................................................................................
+
+In java
+
+int a =10
+int -type
+a - variable
+10-value/literal
+
+what is type of a?
+  int
+what is type of 10
+ yes
+
+variable type and value type can be different.
+
+a'type is integer
+10's type is also int
+
+Type conversion:
+ converting from one type to another type.
+
+Types of conversion:
+ -implicit conversion
+   conversion is taken automatically
+  
+  -explcit conversion
+    we need to convert manually.
+   while conversion, there is possiblity of data loss
+ 
+ targettype = (targettype)sourcetype
+ 
+public class Typeconversion {
+    public static void main(String[] args) {
+        int a = 10;
+
+        //type of b is byte and what is type of 10? int
+        // byte(small) = int(big)
+        //byte b = 10;
+        //here int is converted into byte automatically- implicit conversion
+        byte b = 127;
+
+        byte b2 = (byte) 12444448;
+        System.out.println(b2);
+
+        //decimals
+        //price type is float
+        //10.5 type is double
+        //apply explicit conversion
+        //syntax-1
+//        float price =(float)10.5;
+        float price = 10.5f; //here f will convert double to float
+        System.out.println(price);
+        
+    }
+}
+.....................................................................................
+				Groovy and Type conversion
+
+Groovy automatically takes of type conversion implicitly.
+byte b = 1000;
+println "B " + b
+
+float f = 10.5
+println "F " + f
+
+//here default type of 100 is Integer
+def myvar =100
+println myvar instanceof Integer
+//what if i want to declare Short ,Byte, Long
+
+def shrt = 100 as Short
+
+println shrt instanceof Short
+.....................................................................................
+			Boxing and UnBoxing
+
+Boxing and UnBoxing : converting primtives to wrappers and wrappers to Primitive
+
+//boxing and Unboxing
+Integer i = 10; //boxing
+int a = i;//unboxing
+println "i " + i
+println "a " + a 
+..............................................................................
+Comments:
+
+1.single line comment
+ //
+2.multi line comment
+ /*
+
+*/
+3.groovy doc comment
+/**
+*
+*
+/
+4.shebang line
+#! /user/bin/env groovy
+   This is used to run groovy scripts in unix/linux operating system.
+....................................................................................
+			 Keywords from the groovy
+....................................................................................
+
+Keywords: as,break,case,catch,try,finally,class,of,for,def,enum,const.........
+keywords cant use used as identifier(variable)
+...................................................................................
+Variable declaration Syntax:
+
+-starts with letter
+-starts with $
+-starts with _
+-not starts numbers
+....................................................................................
+			Groovy Programm structure
+....................................................................................
+
+1.script based
+  variables
+  functions
+2.class based
+  package ....
+  import 
+
+  class MyClass{}
+....................................................................................
+				package 
+
+What is package?
+  package is way to organize the code logically or physically
+  physically code is kept inside folders and subfolders
+
+package naming conventions
+  com.google
+  org.google
+  java.lang
+  javax.rs.ws
+  groovy.lang
+  tomcat.server.config
+  
+
+if there is no package, default package is created...
+
+import  keyword is used to import/link already created package.....
+
+Types of packages:
+
+1.custom packages
+    - pakcages are created by us
+2.in built packages
+   - packages are provided by language
+ eg
+  java.lang,java.util,java.math,java.io,java.sql,java.net ...etc
+  groovy.lang,groovy.util
+
+Third party packages
+ -packages are distributed by community
+ 
+hudson.tools 
+com.atlassian.jira.issue
+
+In java except java.lang package ever thing you have to import
+
+package com.mycom.mygroovy;
+
+import java.math.BigInteger;
+
+public class Util {
+    public static void main(String[] args) {
+        BigInteger bigInteger = new BigInteger("14444444444444444444444");
+    }
+}
+
+In Groovy lot of packages are default packages, you dont need to import them...
+
+1.java.io.*
+2.java.lang.*
+3.java.math.BigInteger
+4.java.math.BigDecimal
+5.java.net.*
+6.java.util.*
+7.groovy.lang.*;
+8.groovy.util.*
+
+BigInteger bigInteger=new BigInteger("12222")
+println bigInteger.longValue()
+...................................................................................
+			Values In Groovy
+...................................................................................
+
+1.Strings and characters
+2.Numbers
+3.Booleans
+4.Lists/Collection
+5.Arrays
+6.Map
+7.Objects
+.....................................................................................
+				Strings
+.....................................................................................
+
+=> Text literals are represented in the form of collection of characters called strings.
+=> Strings Objects
+=> Strings are instance of java.lang.String as well as groovy.lang.GString
+=> Each character in groovy strings are 16 bit uni code character...
+
+String declaration patterns:
+
+1.single quote ''
+2.double quote ""
+3.triple single quote '''
+4.triple double qutote """
+5.slashy quote - / /
+6.Dollar slashy quoted - $//
+.................................................................................
+1.single quote ''
+//single quote Strings
+def str = 'Hello,Single Quoted Strings'
+println  str
+println(str instanceof java.lang.String)
+
+2.double quote
+//
+
+def doubleQuote = "Hello,How are you?"
+println(doubleQuote)
+println(doubleQuote instanceof java.lang.String)
+
+3.String concatenation:
+
+def firstName = "Subramanian"
+def lastName = "Murugan"
+//string concatenation using + operator
+def fullName = firstName + lastName
+println(fullName)
+
+Interpoltion:
+=>It is replacement of existing concatnation
+=>way of access variables and expressions inside string is different
+=>This feature not avaiable in java language.
+
+in order to add interpolation syntax, groovy has added a new class called 
+"groovy.lang.GString"
+
+GString syntax
+ "${expression/variable}"
+  "$expression/variable"
+
+//GString
+
+def firstName = "Subramanian"
+def lastName = "Murugan"
+
+def fullName = "${firstName} ${lastName}"
+println(fullName instanceof String)
+println(fullName instanceof groovy.lang.GString)
+println("Hello ${fullName}")
+println("Hello $fullName")
+
+//expressions
+def salary = 100;
+def noofDays = 10
+def totalSalary = "Total Salary is ${salary * noofDays}" //expression
+println("Total Salary $totalSalary")
+.....................................................................................
+				Multi line Strings - single '''(triple single qutoe)
+....................................................................................
+ //java style
+String doc = "<html>" +
+        "<head>" +
+        "<title>" +
+        "</head>" +
+        "<body>" +
+        "<h1>Hello</h1>" +
+        "</body></html>";
+println doc
+
+//Groovy Style : ''' '''
+
+def htmlDoc = '''
+    <html>
+    <head>
+      <title>Hello</title>
+    </head>
+    <body>
+        <h1>Hello</h1>
+    </body>
+    </html>
+'''
+println htmlDoc
+
+...
+Multi line with String interpolation:
+"""
+def htmlnewDoc = """
+    <html>
+    <head>
+      <title>${title}</title>
+    </head>
+    <body>.
+        <h1>${text}</h1>
+    </body>
+    </html>
+"""
+println htmlnewDoc
+
+....................................................................................
+		 Escaping Special Characters in Groovy
+....................................................................................
+
+//How to escape special character
+
+//Hello ! how are you ? \ i am fine what " about you
+
+//here special characters not allowed directly here
+def quote = "Hello ! How are you ? \\ i am fine what \" about you "
+println(quote)
+quote = 'Hello ! How are you ? \\\\ i am fine what \\" about you '
+println(quote)
+
+//unicode character
+def price = "Price in Euro \u20AC"
+println(price)
+
+special characters you can escape
+\b  -backspace
+\f  -formfeed
+\t - tab
+\s -single space
+\' -single qutote
+\" -doule quote
+\unicode - any unicode
+
+How to simplify this?
+ 
+slashy strings
+
+syntax :
+ def variable = /this is string!!/
+//slashy strings
+def myValue = /This is demo slashy/
+println myValue
+//slashy with escape characters
+def quote = /How are you? \ i am fine " \;/
+println(quote)
+
+//multi line strings with slashy
+def doc = /
+  Hello
+    Doctor,
+   I am not feeling well,
+Kindly check \ am i fine " 
+ \" i will pay in \u20AC
+/
+println(doc)
+
+//slash strings with string interpolation
+def name = 'Subramanian'
+def greeting = /Hello $name " \; /
+println greeting
+.....................................................................................
+				Text Processing
+.....................................................................................
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
