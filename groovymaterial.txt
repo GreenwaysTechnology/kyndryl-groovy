@@ -1000,8 +1000,490 @@ def name = 'Subramanian'
 def greeting = /Hello $name " \; /
 println greeting
 .....................................................................................
-				Text Processing
+			Text Processing -Applications of Slash Strings
 .....................................................................................
+
+In  any programming language,text processing can be done using regular expressions-Regex.
+
+Regular expression is one of the dsl concept , introduced in unix operating system in 1960's as text processing methodology.
+
+String mydata="hey;\$ hello 0 1 , how are you subramanian ,7m3"
+
+Task :
+ i want to extract nos from the string
+ i want to extract special characters
+ i want to only $
+
+Regular expression:
+ Regular expression is dsl language to process strings/text
+ Regular expression works based on symbols called "patterns"
+ now a days every pl supports regular expresssion,language runtime and compiler provides regular expression support.
+
+Regular  Expressions in Java:
+ java.util.regex package
+
+https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
+
++
+*
+~
+{}
+?
+
+Simple Pattern syntax:
+
+ \d+  -  Match or find any number in the given string , match any number one or more times.
+
+How to declare pattern in java?
+
+String pattern = "\d+";
+  This is compile time error because, special characters are needed to be escaped.
+
+String pattern = "\\d+";
+  Always you have to add this special character.
+
+if you write complex syntax
+  "\\d+ \\d+ \\*d\\^"
+
+package com.mycom.strings;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class PatternMatchingInJava {
+    public static void main(String[] args) {
+        //pattern matching
+        System.out.println("Regular expression using java");
+        String mydata = "hey;\\$ hello 0 1 , how are you subramanian ,7m3";
+        //extract nos from the string.
+        String pattern = "\\d+";
+        System.out.println(pattern);
+        //compile the pattern
+        Pattern compiledPattern = Pattern.compile(pattern);
+        //verify the String against data.
+        Matcher digitMatcher = compiledPattern.matcher(mydata);
+        //extract data from the Matcher
+        while (digitMatcher.find()){
+            System.out.println(digitMatcher.group());
+        }
+
+    }
+}
+..................................................................................
+			  Groovy and Text Processing
+...................................................................................
+
+Groovy escapes complex pattern declaration using "Slashy Strings"
+
+Version -1
+ Just replace patterns with slashy Strings, continue other java apis.
+ 
+package com.mycom.strings;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+//pattern matching
+System.out.println("Regular expression using java");
+String mydata = /hey;\$ hello 0 1 , how are you subramanian ,7m3/
+//extract nos from the string.
+String pattern = /\d+/
+System.out.println(pattern);
+//compile the pattern
+Pattern compiledPattern = Pattern.compile(pattern);
+//verify the String against data.
+Matcher digitMatcher = compiledPattern.matcher(mydata);
+//extract data from the Matcher
+while (digitMatcher.find()) {
+    System.out.println(digitMatcher.group());
+}
+
+Version 2: Replace the compilation api code
+Pattern compiledPattern = Pattern.compile(pattern);
+ Replace api with ~/d+/
+ "~" - is operator called compile operator.
+
+package com.mycom.strings;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+//pattern matching
+System.out.println("Regular expression using java");
+String mydata = /hey;\$ hello 0 1 , how are you subramanian ,7m3/
+//extract nos from the string.
+//compile the pattern
+Pattern compiledPattern = ~/\d+/
+//verify the String against data.
+Matcher digitMatcher = compiledPattern.matcher(mydata);
+//extract data from the Matcher
+while (digitMatcher.find()) {
+    System.out.println(digitMatcher.group());
+}
+....................................................................................
+Version 3: slashy + Pattern.compile + pattern.matcher
+
+ Matcher digitMatcher = compiledPattern.matcher(mydata) ===(data =~/\d+/)
+
+package com.mycom.strings;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+//pattern matching
+System.out.println("Regular expression using java");
+String mydata = /hey;\$ hello 0 1 , how are you subramanian ,7m3/
+//verify the String against data.
+Matcher digitMatcher = (mydata =~ /\d+/)
+//extract data from the Matcher
+while (digitMatcher.find()) {
+    System.out.println(digitMatcher.group());
+}
+...................................................................................
+
+coding Challange:
+
+Find  all dates in a string 
+
+//the date month and year can be as simple as below
+
+[dd-mm-yyy] - output format
+
+input string
+ def dates ="28-02-1992 abc 15-06-1982 z y xk 15-apr-1982 "
+expected output
+ 28-02-1992
+ 15-06-1982
+////////////////////////////////////////////////////////////////////////////////////
+
+Dollar Slashy String:
+ -Multi line + String pollation + spcial characters..
+
+$// - multi line without interploation
+$/""" xxx """ / multi line with interpolation...
+
+
+//
+
+def name = "Subramanian"
+def price = 1000
+
+def dollarSlashy = $/
+   Hello,$name 
+   100
+   $price
+   1 
+   groovy
+   34 
+/$
+println dollarSlashy
+
+def matcher = (dollarSlashy =~ /\d+/)
+while (matcher.find()){
+    println(matcher.group())
+}
+...................................................................................
+				Numbers
+...................................................................................
+
+Underscore characters in literals:
+..................................
+//under score  literals
+def creditCardNumber = 1234_5678_9012_34657
+println "credit card Number ${creditCardNumber}"
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,.................................
+			   Booleans
+....................................................................................
+
+In java booleans are represented by boolean type with value "true/false"
+package com.mycom.booleans;
+
+public class BooleansInJava {
+    public static void main(String[] args) {
+        boolean isActive = true;
+        boolean isEnabled = false;
+        if (isActive) {
+            System.out.println("Activ");
+        } else {
+            System.out.println("In Active");
+        }
+        if (isEnabled) {
+            System.out.println("Enabled");
+        } else {
+            System.out.println("Disabled");
+        }
+        //works based on relational and logical operator
+        int a =100;
+        if(a ==100){
+            System.out.println("A is equal to 100");
+        }else{
+            System.out.println("A is not equal to 100");
+        }
+
+    }
+}
+....................................................................................
+				Groovy and booleans
+
+In groovy every thing is true except the following values
+
+Falsy Values in Groovy:
+......................
+1.boolean false
+2.0
+3."" Empty string
+4.null 
+5.Empty List []
+6.Empty Map [:]
+
+//booleans
+def isActive = true
+if (isActive) {
+    println "Active"
+} else {
+    println "In Active"
+}
+//0 false
+def counter = 0
+if (counter) {
+    println "Counter is true"
+} else {
+    println "Counter is falsy"
+}
+//string
+def name = "Subramanian"
+if (name) {
+    println "Your name is $name"
+} else {
+    println "Your name is not here"
+}
+//null is false
+def emp = null
+if (emp) {
+    println "Employee is present"
+} else {
+    println "Employee is not Present"
+}
+....................................................................................
+				Operators
+....................................................................................
+
+Arithmetic operators:
+
++ : Addition
+- : substraction
+* : multiplication
+/ : division
+% : remainder
+** :power operator -  groovy special operator.
+
+Unary operator
+++
+--
+++a
+a--
+def a = 10
+def b = 20
+
+println "Addition ${a + b}"
+println "Substraction ${a - b}"
+println "Division ${a / b}"
+println "Remainder ${a / b}"
+println "Power of ${a**2}"
+println "Unary + ${++a}"
+println "Unary + ${a++}"
+.....................................................................................
+			 Assigment operators
+....................................................................................
+
+//single assigment
+def a = 10
+def b = 20
+println "$a $b"
+//multi assigment : java style
+int s = 1, d = 20
+def x = 1, y = 30
+println "$s $d $x $y"
+
+//multi assignment: groovy style
+def (x1, y1, de) = [10, 20, 34]
+println "$x1 $y1 $de "
+//mixed typed
+
+def (status, today, counter) = [true, "19-09-22", 1]
+
+println "$status $today $counter"
+
+//more values : extra values are left automatically
+def (one, two) = [1, 2, 3, 4, 5, 6]
+println "$one $two"
+
+//extra variables are initalized to null
+def (xy, xz, xa) = [1, 2]
+println "$xy $xz $xa"
+
+//just declaration is going to be error:must be initalized
+//def (name,age,city);
+def (name, age, city) = []
+.....................................................................................
+			 Relational Operators
+...................................................................................
+equal ==
+notequal != - different
+ < less than
+ > -greater than
+ <= less than or equal
+ >= greater or equal
+
+def a = 10
+def b = 10
+println a == b
+println a < b
+println a > b
+println a >= b
+println a <= b
+.....................................................................................
+				Logical Operators
+....................................................................................
+
+&&  - logical "and"
+||  - logical "or"
+!   - logical "not"
+
+These operators works based on truth table
+
+and
+0 0 - 0
+1 0  -0
+0 1 - 0
+1 1 - 1
+
+def isActive = true
+def isEnabled = true
+
+println "&& ${isActive && isEnabled}"
+println "|| ${isActive || isEnabled}"
+println "! => ${!isActive}"
+
+def name = "" //false
+def city = "Coimbatore"; //true
+
+println "name and City ${name && city}" // ?
+
+def start = 0
+def stop = 10
+println "star || stop ${start || stop} "
+....................................................................................
+			 Advanced conditional operators
+.....................................................................................
+1.not operator - !
+  Will invert true into false and false into true
+2.Tenary Operator - ?:
+   to replace if ...else 
+3.Elvis Operator - ?
+
+def a = 10;
+def aInverter = !a
+println "A $aInverter"
+
+def x = 10
+def y = 2
+
+if (x == y) {
+    println("X and Y are equal")
+} else {
+    println("X and Y are not equal")
+}
+x == y ? println("X and Y are equal") : println("X and Y are not equal")
+
+def name = "jo"
+def res = name ? "Your name is $name" : "Sorry mismatch"
+println res
+
+
+Elvis Operator:
+  The Elvis operator is shortening of the tenary operator.
+ One instance of where this is handy is for returning a 'sensible default' value if an expression resolves to falsh-ish
+
+def counter = 10
+//if counter is falsy then initalize 1 else the value of the counter
+println counter ?: 1
+
+def a = 10
+def b = 20
+
+if (a == b) {
+    println("a and b are equal")
+} else {
+    println("a and b are not equal")
+}
+a == b ? println("Equal") : println("Not equal")
+
+def result = a == b ? "Equal" : "Not Equal"
+println result
+def name = "Subramnaian"
+def found = name ? "Name found $name" : "Name not Found"
+println(found)
+
+def price;
+println price ? price : 10
+println price ?: 10
+
+//computation;
+def totalPrice = price ?: 10 * 100
+println("total Price ${totalPrice}")
+....................................................................................
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
