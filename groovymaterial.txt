@@ -1433,7 +1433,396 @@ println price ?: 10
 def totalPrice = price ?: 10 * 100
 println("total Price ${totalPrice}")
 ....................................................................................
-			
+			  Regular Expressions Operators
+...................................................................................
+
+Pattern:
+ ~/pattern/ ->Pattern
+find :
+ (text =~/pattern/) ->Matcher
+
+Mather Operator:
+  ==~ Mather Object returns boolean
+ !=~ Matcher object returns boolean - true or false
+
+...................................................................................
+Advanced Operators
+1.Spread Operator
+2.Range Operator
+3.SpaceShip Operator
+4.Subscript operator
+5.Identity Operator
+6.Coercion Operator
+7.call operator
+8.Method Reference /Pointer Operator
+9.Object Operators
+    Safe Navigation Operator
+    Direct field Operator
+     Method Pointer
+
+Range Operator:
+   I want to generate range of value
+
+ seed..end
+
+
+//range operator ;for numbers
+def range = 0..100
+println(range.collect())
+
+def alphabets = 'b'..'z'
+println(alphabets.collect())
+
+Coercion Operator:
+   The operator which converts from type to another type.
+
+Integer x =100
+//old style
+//String s = (String) x
+//using coercion operator
+String s =  x as String 
+println(s)
+....................................................................................
+			Conditional Structures
+....................................................................................
+
+//if..else
+def isActive = true
+if (isActive) {
+    println("Active")
+} else {
+    println("Not Active")
+}
+def name='Subramanian'
+if(name){
+    println("Name is $name")
+}else{
+    println("Name not Present")
+}
+...
+
+switch...case
+...............
+def x = 34
+def result = ""
+switch (x) {
+    case "foo":
+        result = "found foo";
+        break;
+    case "bar":
+        result = "bar"
+        break
+    case [4, 5, 7, 'hello']:
+        result = "list"
+        break
+    case 12..50:
+        result = "range"
+        break
+    case Number:
+        result = "Number"
+        break
+    case ~/fo*/:
+        result = "Regular expression"
+        break
+    default:
+        result = "No Match found"
+        break
+}
+println(result)
+.....................................................................................				   Switch Expression
+
+Switch can return value like methods.
+
+def person = 'Subramanian'
+def partner = switch (person) {
+    case 'Subramanian' -> 'Geetha'
+    case 'Romeo' -> 'Juliet'
+    case 'Adam' -> 'Eve'
+    case 'Antony' -> 'Cleopatra'
+}
+println(partner)
+.....................................................................................
+			Looping
+1.for loop
+  for
+  for..in
+2.while loop
+3.do..while loop
+//Loops
+def message = ''
+for (int i = 0; i < 10; i++) {
+    message += 'hi'
+}
+println(message)
+
+//for in loop
+for(def x in 1..10){
+    println(x)
+}
+//while loop
+def x=0;
+def y=5
+while(y-->0){
+    x++
+}
+println(x)
+..................................................................................
+				Coding Challange
+...................................................................................
+
+Q.1. find even numbers from 0...1000 range
+Q.2. find grade for give score
+    score is greater than 95 -A
+    80 to 95 - Grade B
+    60 to 80 - Grade C 
+    50 to 60 - Grade D
+    Less than 50 Grade F
+....................................................................................
+			 Functions-Methods
+
+
+Function represents logic 
+
+1.static typed syntax; looks like a java syntax
+
+2.dynamic typed syntax
+
+
+//java style
+//function declaration
+void sayHello(){
+    println("Hello")
+}
+//function invocation
+sayHello()
+//groovy style
+def sayHai(){
+    println("Hai")
+}
+sayHai()
+
+
+Groovy offers two style code
+
+1.script style
+2.class style
+
+script style: collection of variables and functions
+
+code.groovy
+def a =10
+
+def sayHello(){
+  println("hello")
+}
+after compilation the code looks like below
+
+class Code extends Script {
+
+   def sayHello(){
+  	println("hello")
+  }
+
+    def run(){
+	sayHello()
+    }
+   static void main(String args[]){
+	InvokerHelper.runScript(Code,args)
+   }
+}
+.....
+
+basic method args and parameters
+package com.mycom.functions
+
+//args and parameter
+//parameters are values to be passed to the function
+//args are receiver
+
+def sayHello(String name) {
+    println("Hello ${name}")
+}
+
+sayHello("Subramanian")
+//sayHello(10)
+
+def myMethod(def a, def b) {
+    println("a $a b $b")
+}
+
+myMethod(10, 10)
+myMethod("Hello", "Hai")
+myMethod(true, false)
+
+//if you want to avoid calculation errors -  use strong typing
+def add(int a, int b) {
+    int c = a + b
+    println("Result is ${c}")
+}
+
+add(10, 10)
+
+def x = 10
+def y = 9
+add(x, y)
+add()
+...............................................................................
+			Default args
+package com.mycom.functions
+
+//default args
+def add(int a = 0, int b = 0) {
+    println(" a ${a} b ${b}")
+    def result = a + b
+    println("The Result would be ${result}")
+}
+
+add(10, 10)
+add()
+.....................................................................................
+			 How to read input from the Keyword
+....................................................................................
+
+package com.mycom.functions
+
+def add(int a = 0, int b = 0) {
+    def result = a + b
+    println("a $a b $b $result")
+}
+
+println "Enter A"
+def a = System.in.newReader().readLine() as Integer
+println "Enter B"
+def b = System.in.newReader().readLine() as Integer
+add(a, b)
+...................................................................................
+			Variable args - var args
+...................................................................................
+What if i want a method, that method must take n-number of args
+What if i pass more parameters, but i have less args
+
+package  com.mycom.functions
+
+def log(String...logs){
+    println(logs)
+}
+log('hello')
+log('hello','hai','welcome')
+....................................................................................
+			    Parameters
+
+There are two types of Parameters
+1.Positional Parameter
+   
+2.Named Parameter
+
+
+package com.mycom.functions
+
+//this is called postional parameters:
+//parameters are passed based on position
+def add(int a, int b, int c) {
+    def result = a + b + c
+    println("The Result is $result ")
+}
+//a=10,b=10,c=10
+add(10, 10, 10)
+
+//Named Parameters
+def format(Map args) {
+    println("A ${args.a} B ${args.b} C ${args.c}")
+}
+
+format(a: 10, c: 20, b: 30)
+format(c: 10, a: 20, b: 30)
+//mixing named and postional parameter
+//Always Named parameter must go first arg, postional args must go after that
+def foo(Map args, int num, String bar) {
+    println(args)
+    println(num)
+    println(bar)
+}
+
+foo(name: 'Subramnaian', age: 10, city: 'Coimbatore', 90, "bar")
+...................................................................................
+			How function return values
+....................................................................................
+package com.mycom.functions
+
+String getName(){
+    return 'Subramanian'
+}
+println(getName())
+
+def getValue(){
+    return 10
+}
+println(getValue())
+
+In groovy, return statement is optional, not necessary, by default every method returns some value, whether the return statement is present or not.
+
+          "Last line of method, will be return value"
+
+package com.mycom.functions
+
+String getName() {
+    return 'Subramanian'
+}
+
+println(getName())
+
+def getValue() {
+    return 10
+}
+
+println(getValue())
+
+def add(int a = 0, int b = 0) {
+    def c = a + b
+    //return c
+}
+
+println(add(10, 10))
+
+def multiply(int a = 0, int b = 0) {
+    a * b
+}
+
+println(multiply(10, 10))
+
+def getPatner(name = '') {
+//    def person=switch (name) {
+//        case 'Subramanian' -> 'Geetha'
+//        case 'Romeo' -> 'Juliet'
+//        case 'Adam' -> 'Eve'
+//        case 'Antony' -> 'Cleopatra'
+//    }
+    switch (name) {
+        case 'Subramanian' -> 'Geetha'
+        case 'Romeo' -> 'Juliet'
+        case 'Adam' -> 'Eve'
+        case 'Antony' -> 'Cleopatra'
+    }
+}
+
+println(getPatner("Subramanian"))
+
+//logic
+def login(String userName = '', String password = '') {
+    userName.equals("admin") && password.equals("admin") //return boolean
+}
+println(login() ? 'Login Success' : 'login Failed')
+println(login('admin') ? 'Login Success' : 'login Failed')
+
+
+
+
+
+
+
+
+
+
 
 
 
