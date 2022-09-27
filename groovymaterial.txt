@@ -1813,7 +1813,808 @@ def login(String userName = '', String password = '') {
 }
 println(login() ? 'Login Success' : 'login Failed')
 println(login('admin') ? 'Login Success' : 'login Failed')
+.....................................................................................
+		  Object oriented Programming and implementation
+				in Groovy
 
+What is Object orientation?
+  Object Orientation is style of writing code.
+
+Object orientation encapsulate "data and its operation" is enclosed in one place
+
+What are the principles of oo?
+1.Abstraction
+2.Encapsulation
+3.Modularity
+4.Hierachy
+5.Typing 
+6.Persistency
+7.Concurrency
+
+Abstraction:
+  High level representation of domains in software system
+  Abstraction is implemented via "classes and interfaces"
+
+class:
+ 
+1.class is used organize variables and methods under single unit.
+  variables represent data, methods represent how to operate on that data.
+2.class is template for a problem domain we call object.
+
+
+classes are in java language:
+
+1.class is used to represent object template.
+2.class contains variables and method
+3.class can also container other classes and interfaces
+4.Every java program must start with class definition only
+5.Every program can have multiple classes but recommended is only one - class per file/program
+6.Every java program must have main method.
+
+Object:
+1.Runtime representation of class we call object
+2.Object means, memory representation of class.
+3.We can create objects from a single class but each object has its own memory address
+4.Object is pointed by a variable "reference variable" pointer to Object
+5.Object contains methods, and variables called instance members
+
+
+package com.mycom.oo;
+
+public class HelloWorld {
+    public String sayHello() {
+        return "Hello";
+    }
+}
+package com.mycom.oo;
+
+public class Main {
+    public static void main(String[] args) {
+        HelloWorld helloWorld = new HelloWorld();
+        System.out.println(helloWorld.sayHello());
+    }
+}
+
+   HelloWorld helloWorld =      new      HelloWorld();
+     |           |               |           |
+   Type      referenceVariable  Operator   Constructor Call
+
+......................................................................................
+Types of classes:
+1.Service class -  Class contains biz logic
+2.Repository class - Class contains apis to interact with Databases
+3.Controller class -  Class which acts as end points in web programming
+4.Entity class - Class Contains data - model
+5.Static class -Class contains global data
+
+
+package com.mycom.oo.entity;
+
+public class Product {
+    //data - instance variables
+    private int id;
+    private String productName;
+    private double price;
+    private int qty;
+    private boolean inStock;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public boolean isInStock() {
+        return inStock;
+    }
+
+    public void setInStock(boolean inStock) {
+        this.inStock = inStock;
+    }
+
+
+    //setters and getters
+
+
+}
+
+....
+package com.mycom.oo;
+
+import com.mycom.oo.entity.Product;
+
+public class ProductMain {
+    public static void main(String[] args) {
+        Product product = new Product();
+        product.setId(1);
+        product.setProductName("IPhone");
+        product.setPrice(45.89);
+        product.setInStock(true);
+        product.setQty(100);
+        //get product details
+        System.out.println("Id " + product.getId());
+        System.out.println("Name " + product.getProductName());
+        System.out.println("Price "+ product.getPrice());
+        System.out.println("Stock " + product.isInStock());
+    }
+}
+....................................................................................
+			Java Bean
+...................................................................................
+
+What is Java Bean?
+ Java Bean is programming standard defined by Java Standard committe called "JCP"
+
+Java bean spec talks how to define java class,how to declare variables, methods.
+
+General Rule for Java Bean:
+...........................
+
+1.class must be declared with public keyword
+
+2.Class instance variables must be declared with "private" keyword.
+
+3.instance variables must be initalized through setters only
+
+4.instance variables must be read through getters only
+
+5.instance variables may be initalized through constructors
+
+
+eg:
+package com.mycom.oo.entity;
+
+public class Product {
+    //data - instance variables
+    private int id;
+    private String productName;
+    private double price;
+    private int qty;
+    private boolean inStock;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public boolean isInStock() {
+        return inStock;
+    }
+
+    public void setInStock(boolean inStock) {
+        this.inStock = inStock;
+    }
+
+
+    //setters and getters
+
+
+}
+
+.....................................................................................
+How to initalize the data through constructors?
+package com.mycom.oo.entity;
+
+public class Product {
+    //data - instance variables
+    private int id;
+    private String productName;
+    private double price;
+    private int qty;
+    private boolean inStock;
+
+    //constructor is special method through which you can initalize the data
+    public Product(int id, String productName, double price, int qty, boolean inStock) {
+        this.id = id;
+        this.productName = productName;
+        this.price = price;
+        this.qty = qty;
+        this.inStock = inStock;
+    }
+    //
+
+
+    public Product() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public boolean isInStock() {
+        return inStock;
+    }
+
+    public void setInStock(boolean inStock) {
+        this.inStock = inStock;
+    }
+
+
+    //setters and getters
+
+
+}
+package com.mycom.oo;
+
+import com.mycom.oo.entity.Product;
+
+public class ProductMain {
+    public static void main(String[] args) {
+        //Here object is initalized through setters
+        Product product = new Product();
+        product.setId(1);
+        product.setProductName("IPhone");
+        product.setPrice(45.89);
+        product.setInStock(true);
+        product.setQty(100);
+        //get product details
+        System.out.println("Id " + product.getId());
+        System.out.println("Name " + product.getProductName());
+        System.out.println("Price " + product.getPrice());
+        System.out.println("Stock " + product.isInStock());
+
+        //Here Object is initalized through constructors
+        Product newProduct = new Product(12, "Tv", 89.89, 100, true);
+        System.out.println("Id " + newProduct.getId());
+        System.out.println("Name " + newProduct.getProductName());
+        System.out.println("Price " + newProduct.getPrice());
+        System.out.println("Stock " + newProduct.isInStock());
+
+    }
+}
+
+
+setters: 
+ It is special functions/methods used to initalize the variable
+
+1.setters must start with public
+2.setter's return type must be void
+3.method name must begin with "set"+VariableName -  "CamelCase"
+4.setters must take arg and arg variable must match with "instance" variable Name
+
+
+"this": keyword
+
+ Types of reference variables
+
+1.Programmer defined reference variable
+ Customer customer = new Customer()
+ customer is reference variable
+2.implcit reference variables
+  jvm assigns during runtime time
+
+  "this"  - points current object
+  "super" - points parent object
+
+ 1. this is "implicit" pointer /reference variable
+
+public class Customer {
+    //data
+    private int id;
+    private String name;
+
+    //setters and gett
+    public void setId(int id) {
+        //refer  the instance variable
+        this.id = id; // Lvalue
+    }
+    
+}
+
+How to write getter method?
+
+1.getter method must be public
+2.it should have return type of instance variable
+3.it should start with "getVariable"
+4.It should not take arg
+.....................................................................................
+			Groovy classes and objects
+....................................................................................
+
+Groovy never follows Javabean standard,rather who follows Groovy Bean standard.
+package com.mycom.oo.groovybeans
+
+/**
+ * groovy classes are public by default
+ * groovy all instance variables are by default public
+ * groovy does not require setter and getter
+ * groovy does not require even constructors
+ */
+
+class Customer {
+    int id;
+    String name
+    String city
+    double invoiceValue
+}
+package com.mycom.oo.groovybeans
+
+
+def customer = new Customer()
+//initalize
+customer.id = 1;
+customer.name = 'Subramanian'
+customer.city = 'Coimbatore'
+customer.invoiceValue = 9000.78
+//print
+println("Id ${customer.id}")
+println("Name ${customer.name}")
+println("City ${customer.city}")
+println("Invoice value ${customer.invoiceValue}")
+.....................................................................................
+			 Object access operators
+.....................................................................................
+
+1.Direct field access operator
+
+field :
+  it is an instance variable declared inside class.
+
+"."  - field access opeator
+    -internally triggers getters automatically
+					
+".@" - if you want to access without getters.
+
+
+//without getters
+println("Id ${customer.@id}")
+println("Name ${customer.@name}")
+println("City ${customer.@city}")
+println("Invoice value ${customer.@invoiceValue}")
+
+.................................................................................
+
+Default values for an object:
+
+integer: 0
+floating : 0.0
+boolean : false
+reference types:null
+
+Dynamic typed fields:
+
+package com.mycom.oo.groovybeans
+
+class Person {
+    def id;
+    def name
+    def city
+}
+
+import com.mycom.oo.groovybeans.Person
+
+
+def person = new Person()
+person.name = 'Subramanian'
+println("Name ${person.name}")
+
+Groovy standard is "dont declare fields as dynamic type" -  static typed
+....................................................................................
+			How to declare methods inside class
+....................................................................................
+package com.mycom.oo.groovybeans
+
+class CustomerService {
+
+    //methods
+    def findAll() {
+        //return 'Find All'
+        'FindAll'
+    }
+
+    def save(name='') {
+        "$name Save"
+    }
+    def search(Map args){
+        println(args)
+    }
+}
+import com.mycom.oo.groovybeans.CustomerService
+
+def customerService = new CustomerService();
+
+println(customerService.findAll())
+println(customerService.save('customer'))
+println(customerService.search(filter: 'city', and: 'id'))
+.....................................................................................				How to handle null values and errors
+
+import com.mycom.oo.groovybeans.Customer
+
+Customer customer = null;
+println(customer.name)
+
+Caught: java.lang.NullPointerException: Cannot get property 'name' on null object
+java.lang.NullPointerException: Cannot get property 'name' on null object
+	at NullDemo.run(NullDemo.groovy:4)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+
+
+import com.mycom.oo.groovybeans.Customer
+
+Customer customer = null;
+println(customer.getClass())
+
+
+class org.codehaus.groovy.runtime.NullObject
+
+In Groovy null itself is object
+
+
+import com.mycom.oo.groovybeans.Customer
+
+Customer customer = null;
+println(customer.getClass())
+//access properties on null object
+//groovy offers  operator called safe navigation operator
+println(customer?.name)
+println("something ")
+println("nothing")
+....................................................................................
+				Encapsulation
+
+What is encapsulation?
+  Encapsulation is a concept helps to prevent code sharing.
+
+What to share , whare to share?
+
+-with in class
+-outside class
+-within package
+-outside package
+
+Keywords:
+ private-No private scope in groovy
+ public - default scope
+ protected -
+ default -No package scope in groovy
+
+private fields:
+
+package com.mycom.oo.encapsulation
+
+class User {
+   private String userName
+}
+
+import com.mycom.oo.encapsulation.User
+
+def user = new User()
+user.userName = 'Subramanian'
+println(user.userName)
+
+output:
+Subramanian
+
+ In groovy there is no private fields.
+
+Private methods:
+package com.mycom.oo.encapsulation
+
+class User {
+   private String userName
+
+   private String login(){
+      return 'Success'
+   }
+}
+
+Even private methods also not valid.
+
+We cant declare private classes.
+................................................................................
+			public 
+.............................................................................
+
+By default class,fields,methods all are public 
+
+package com.mycom.oo.encapsulation
+
+class Customer {
+    public Integer id;
+    public String name;
+    public Boolean status;
+}
+.................................................................................
+			 Hierachy
+...................................................................................
+
+Object Relationship:
+
+1.HAS-A relationship - composition
+2.IS-A  relationship - inheritance.
+
+
+1.HAS-A relationship - composition
+
+package com.mycom.oo.hierachy.hasa
+
+class Employee {
+    String id
+    String name
+    double salary
+    //address
+    String doorNo
+    String street
+    String city
+    String state
+    String zipcode
+    String country
+}
+import com.mycom.oo.hierachy.hasa.Employee
+
+def emp = new Employee(id: 1, name: 'Subramanian', city: 'Coimbatore')
+println("${emp.name} ${emp.city} ${emp.id}")
+
+here employee class dumps the address information.
+suppose what if other class requires same address data.
+package com.mycom.oo.hierachy.hasa
+
+class User {
+    String id
+    String name
+    //address
+    String doorNo
+    String street
+    String city
+    String state
+    String zipcode
+    String country
+}
+
+
+Here address information is duplicated in user and customer both classes.
+
+Solution:
+  HAS-A 
+
+package com.mycom.oo.hierachy.hasa
+
+class Address {
+    //address
+    String doorNo
+    String street
+    String city
+    String state
+    String zipcode
+    String country
+}
+package com.mycom.oo.hierachy.hasa
+
+class Employee {
+    String id
+    String name
+    double salary
+    //has-a
+    Address address
+
+}
+import com.mycom.oo.hierachy.hasa.Address
+import com.mycom.oo.hierachy.hasa.Employee
+import com.mycom.oo.hierachy.hasa.User
+
+def emp = new Employee(id: 1,
+        name: 'Subramanian',
+        address: new Address(street: '10th Street',
+                city: 'Coimbatore',
+                state: 'Tamil Nadu',
+                zipcode: '600001',
+                country: 'India'))
+println("${emp.id} ${emp.name} ${emp.address.street} ${emp.address.city} ")
+
+
+def user = new User(id: 1,
+        name: 'Subramanian',
+        address: new Address(street: '10th Street',
+                city: 'Coimbatore',
+                state: 'Tamil Nadu',
+                zipcode: '600001',
+                country: 'India'))
+println("${user.name} ${user.address.city}")
+.....................................................................................
+			 Dependency Injection
+.....................................................................................
+package com.mycom.oo.hierachy.hasa.di
+
+class UserRepository {
+
+    def save() {
+        "save is called"
+    }
+
+    def findAll() {
+        "Find All"
+    }
+
+    def remove() {
+        "remove"
+    }
+
+    def update() {
+        "update"
+    }
+}
+package com.mycom.oo.hierachy.hasa.di
+
+class UserService {
+    //dependency
+    UserRepository userRepository
+
+    def findAll() {
+        //invoke userRepository
+        userRepository.findAll()
+    }
+}
+package com.mycom.oo.hierachy.hasa.di
+
+class UserController {
+    UserService userService
+
+    def init() {
+        userService.findAll()
+    }
+}
+import com.mycom.oo.hierachy.hasa.di.UserController
+import com.mycom.oo.hierachy.hasa.di.UserRepository
+import com.mycom.oo.hierachy.hasa.di.UserService
+
+//
+def userCtrl = new UserController(userService: new UserService(userRepository: new UserRepository()))
+println(userCtrl.init())
+....................................................................................
+			    IS-A : Inheritance
+.....................................................................................
+
+Why Inheritance?
+  Code sharing
+To share code across the common classes, to avoid duplicate code.
+
+
+Implmentations:
+
+1.Using classes
+   ->Regular class/Normal
+   ->Abstract class
+2.Interfaces
+3.Trait - only In groovy
+
+1.Base class /super class/Parent class
+2.Dervid class/child class/sub class.
+
+Inheritance is class level, inheritance happens during compile time.
+
+
+Regular class Based Inhertance:
+
+extends -  keyword is used to connect classes
+
+As soon as classes are connected code can be shared: data, methods.
+
+Data Sharing
+...
+
+Parent class:
+package com.mycom.oo.hierachy.isa.regularclasses
+
+class Person {
+    String firstName
+    String middleName
+    String lastName
+    Integer age
+}
+
+Child classes:
+package com.mycom.oo.hierachy.isa.regularclasses
+
+class Employee extends Person {
+   //Employee specific data
+    double salary
+}
+package com.mycom.oo.hierachy.isa.regularclasses
+
+class Customer extends Person {
+    double creditValue
+}
+package com.mycom.oo.hierachy.isa.regularclasses
+
+class Vistor extends Person {
+    String whomToMeet
+    String purposeOfVist
+}
+import com.mycom.oo.hierachy.isa.regularclasses.Customer
+import com.mycom.oo.hierachy.isa.regularclasses.Employee
+
+def emp = new Employee(firstName: 'Subramanian', lastName: 'Murugan', salary: 10000.89)
+println("Employee Details")
+println("Name : ${emp.firstName} ${emp.lastName}")
+println("Salary ${emp.salary}")
+
+def customer = new Customer(firstName: 'Subramanian', lastName: 'Murugan', creditValue: 10000.89)
+println("customer Details")
+println("Name : ${customer.firstName} ${customer.lastName}")
+println("CreditValue ${customer.creditValue}")
 
 
 
